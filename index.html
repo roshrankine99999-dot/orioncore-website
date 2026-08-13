@@ -1,940 +1,1709 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<!-- FAVICON -->
 <link rel="icon" type="image/png" sizes="32x32" href="favicon.PNG">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon.PNG">
 <link rel="shortcut icon" type="image/png" href="favicon.PNG">
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="OrionCore provides modern bookkeeping and financial support for growing Canadian businesses.">
-  <meta name="theme-color" content="#2563EB">
-  <title>OrionCore | Bookkeeping & Business Solutions</title>
-
-  <style>
-    :root {
-      --blue: #2563EB;
-      --blue-dark: #1D4ED8;
-      --blue-light: #EFF6FF;
-      --teal: #0F766E;
-      --ink: #172033;
-      --muted: #64748B;
-      --white: #FFFFFF;
-      --light: #F8FAFC;
-      --border: #E2E8F0;
-      --success: #16A34A;
-      --shadow: 0 12px 35px rgba(23, 32, 51, .08);
-      --radius: 18px;
-      --max: 1120px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      color: var(--ink);
-      background: var(--white);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, textarea, select { font: inherit; }
-
-    .container {
-      width: min(var(--max), calc(100% - 40px));
-      margin-inline: auto;
-    }
-
-    /* NAV */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,.96);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -.03em;
-      white-space: nowrap;
-    }
-
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #2563EB, #38BDF8);
-      display: grid;
-      place-items: center;
-      color: white;
-      font-size: .9rem;
-      box-shadow: 0 7px 18px rgba(37,99,235,.25);
-    }
-
-    .logo span { color: var(--blue); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #475569;
-      font-size: .94rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--blue); }
-
-    .menu-btn {
-      display: none;
-      border: 0;
-      background: transparent;
-      font-size: 1.65rem;
-      cursor: pointer;
-      color: var(--ink);
-    }
-
-    /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 46px;
-      padding: 0 20px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      cursor: pointer;
-      transition: .2s ease;
-    }
-
-    .btn-primary {
-      background: var(--blue);
-      color: white !important;
-    }
-
-    .btn-primary:hover {
-      background: var(--blue-dark);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: white;
-      color: var(--ink);
-      border-color: var(--border);
-    }
-
-    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
-
-    /* SPA PAGES */
-    .page { display: none; }
-    .page.active { display: block; }
-
-    /* HERO */
-    .hero {
-      background: linear-gradient(180deg, var(--blue-light), #fff 90%);
-      padding: 82px 0 70px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 55px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--teal);
-      background: white;
-      border: 1px solid #CCFBF1;
-      border-radius: 999px;
-      padding: 7px 13px;
-      font-size: .82rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      background: var(--success);
-      border-radius: 50%;
-    }
-
-    h1 {
-      font-size: clamp(2.45rem, 5vw, 4.2rem);
-      line-height: 1.05;
-      letter-spacing: -.055em;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 span { color: var(--blue); }
-
-    .lead {
-      color: var(--muted);
-      font-size: 1.08rem;
-      max-width: 610px;
-      margin-bottom: 28px;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    /* DASHBOARD MOCKUP */
-    .dashboard {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .dash-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 18px;
-    }
-
-    .dash-title { font-weight: 800; }
-    .status {
-      font-size: .72rem;
-      font-weight: 800;
-      color: var(--success);
-      background: #F0FDF4;
-      padding: 5px 9px;
-      border-radius: 999px;
-    }
-
-    .metric {
-      padding: 20px;
-      background: var(--light);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      margin-bottom: 12px;
-    }
-
-    .metric small { color: var(--muted); }
-    .metric strong { display: block; font-size: 1.75rem; margin: 4px 0; }
-    .positive { color: var(--success); font-size: .8rem; font-weight: 700; }
-
-    /* SECTIONS */
-    section.standard { padding: 78px 0; }
-
-    .section-heading {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 45px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(2rem, 4vw, 2.7rem);
-      line-height: 1.1;
-      letter-spacing: -.04em;
-      margin-bottom: 12px;
-    }
-
-    .section-heading p { color: var(--muted); }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      background: white;
-      transition: .2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-      border-color: #BFDBFE;
-    }
-
-    .icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 13px;
-      display: grid;
-      place-items: center;
-      background: var(--blue-light);
-      color: var(--blue);
-      font-weight: 900;
-      margin-bottom: 20px;
-    }
-
-    .card h3 { margin-bottom: 8px; font-size: 1.18rem; }
-    .card p { color: var(--muted); font-size: .94rem; }
-
-    .soft-section { background: var(--light); }
-
-    /* TRUST */
-    .trust {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 26px 0;
-      background: white;
-    }
-
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      text-align: center;
-      gap: 20px;
-    }
-
-    .trust strong { display: block; font-size: 1.45rem; color: var(--blue); }
-    .trust span { color: var(--muted); font-size: .8rem; }
-
-    /* INNER PAGE HERO */
-    .inner-hero {
-      padding: 65px 0;
-      background: var(--blue-light);
-      text-align: center;
-    }
-
-    .inner-hero h1 { font-size: clamp(2.3rem, 5vw, 3.4rem); }
-    .inner-hero p { max-width: 680px; margin: 0 auto; color: var(--muted); }
-
-    /* ABOUT */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .check-list { list-style: none; margin-top: 24px; }
-    .check-list li { display: flex; gap: 12px; margin: 15px 0; }
-    .check {
-      color: var(--teal);
-      font-weight: 900;
-    }
-
-    .quote-box {
-      padding: 35px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, var(--blue), #38BDF8);
-      color: white;
-      box-shadow: var(--shadow);
-    }
-
-    /* BOOKING */
-    .booking-card {
-      max-width: 900px;
-      margin: auto;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 35px;
-      box-shadow: var(--shadow);
-      background: white;
-      text-align: center;
-    }
-
-    /* CONTACT */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 35px;
-    }
-
-    .contact-panel {
-      background: var(--blue-light);
-      border-radius: 22px;
-      padding: 30px;
-    }
-
-    form {
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 30px;
-      background: white;
-      box-shadow: var(--shadow);
-    }
-
-    .field { margin-bottom: 16px; }
-    label { display: block; font-weight: 700; font-size: .88rem; margin-bottom: 6px; }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 13px;
-      outline: none;
-      background: white;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(37,99,235,.1);
-    }
-
-    textarea { resize: vertical; min-height: 110px; }
-
-    .form-message {
-      display: none;
-      margin-top: 12px;
-      padding: 12px;
-      background: #F0FDF4;
-      color: var(--success);
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: .9rem;
-    }
-
-    /* FAQ */
-    .faq-wrap { max-width: 820px; margin: auto; }
-    .faq-item {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-
-    .faq-q {
-      width: 100%;
-      border: 0;
-      background: white;
-      padding: 19px;
-      text-align: left;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .faq-a {
-      display: none;
-      padding: 0 19px 19px;
-      color: var(--muted);
-    }
-
-    .faq-item.open .faq-a { display: block; }
-
-    /* FOOTER */
-    footer {
-      background: #172033;
-      color: #CBD5E1;
-      padding: 45px 0 25px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 35px;
-      margin-bottom: 35px;
-    }
-
-    footer h3, footer h4 { color: white; margin-bottom: 12px; }
-    footer a { color: #CBD5E1; display: block; margin: 7px 0; font-size: .9rem; }
-    footer a:hover { color: white; }
-    .footer-bottom { border-top: 1px solid #334155; padding-top: 20px; font-size: .8rem; }
-
-    /* MOBILE */
-    @media (max-width: 850px) {
-      .menu-btn { display: block; }
-
-      .nav-links {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 72px;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 18px 20px 22px;
-        background: white;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 15px 25px rgba(0,0,0,.07);
-      }
-
-      .nav-links.open { display: flex; }
-      .nav-links li a { display: block; padding: 9px 0; }
-      .nav-links .btn { text-align: center; margin-top: 4px; }
-
-      .hero-grid, .two-col, .contact-grid { grid-template-columns: 1fr; }
-      .hero { padding: 55px 0; }
-      .hero-visual { order: -1; }
-      .cards { grid-template-columns: 1fr; }
-      .trust-grid { grid-template-columns: 1fr 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      section.standard { padding: 60px 0; }
-    }
-
-    @media (max-width: 520px) {
-      .container { width: min(var(--max), calc(100% - 28px)); }
-      .actions .btn { width: 100%; }
-      .trust-grid { grid-template-columns: 1fr 1fr; gap: 15px; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .dashboard { padding: 16px; }
-      form, .booking-card { padding: 22px; }
-      .inner-hero { padding: 50px 0; }
-    }
-  </style>
+
+<meta name="description" content="OrionCore provides modern bookkeeping and financial support for growing Canadian businesses.">
+<meta name="theme-color" content="#2563EB">
+
+<title>OrionCore | Bookkeeping & Business Solutions</title>
+
+<style>
+:root {
+--blue: #2563EB;
+--blue-dark: #1D4ED8;
+--blue-light: #EFF6FF;
+--teal: #0F766E;
+--ink: #172033;
+--muted: #64748B;
+--white: #FFFFFF;
+--light: #F8FAFC;
+--border: #E2E8F0;
+--success: #16A34A;
+--shadow: 0 12px 35px rgba(23, 32, 51, .08);
+--radius: 18px;
+--max: 1120px;
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI",
+Roboto, Arial, sans-serif;
+color: var(--ink);
+background: var(--white);
+line-height: 1.6;
+}
+
+a {
+color: inherit;
+text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+font: inherit;
+}
+
+.container {
+width: min(var(--max), calc(100% - 40px));
+margin-inline: auto;
+}
+
+/* =========================
+NAVIGATION
+========================= */
+
+header {
+position: sticky;
+top: 0;
+z-index: 1000;
+background: rgba(255, 255, 255, .96);
+border-bottom: 1px solid var(--border);
+backdrop-filter: blur(12px);
+}
+
+.nav {
+min-height: 72px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
+}
+
+.logo {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+white-space: nowrap;
+}
+
+.logo-mark {
+width: 40px;
+height: 40px;
+border-radius: 10px;
+object-fit: contain;
+display: block;
+background: transparent;
+}
+
+.nav-links {
+display: flex;
+align-items: center;
+gap: 28px;
+list-style: none;
+}
+
+.nav-links a {
+color: #475569;
+font-size: .94rem;
+font-weight: 600;
+cursor: pointer;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+color: var(--blue);
+}
+
+.menu-btn {
+display: none;
+border: 0;
+background: transparent;
+font-size: 1.65rem;
+cursor: pointer;
+color: var(--ink);
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+min-height: 46px;
+padding: 0 20px;
+border-radius: 10px;
+border: 1px solid transparent;
+font-weight: 700;
+cursor: pointer;
+transition: .2s ease;
+}
+
+.btn-primary {
+background: var(--blue);
+color: white !important;
+}
+
+.btn-primary:hover {
+background: var(--blue-dark);
+transform: translateY(-1px);
+}
+
+.btn-secondary {
+background: white;
+color: var(--ink);
+border-color: var(--border);
+}
+
+.btn-secondary:hover {
+border-color: var(--blue);
+color: var(--blue);
+}
+
+/* =========================
+SPA PAGES
+========================= */
+
+.page {
+display: none;
+}
+
+.page.active {
+display: block;
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero {
+background: linear-gradient(180deg, var(--blue-light), #fff 90%);
+padding: 82px 0 70px;
+}
+
+.hero-grid {
+display: grid;
+grid-template-columns: 1.05fr .95fr;
+gap: 55px;
+align-items: center;
+}
+
+.eyebrow {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+color: var(--teal);
+background: white;
+border: 1px solid #CCFBF1;
+border-radius: 999px;
+padding: 7px 13px;
+font-size: .82rem;
+font-weight: 800;
+margin-bottom: 20px;
+}
+
+.dot {
+width: 8px;
+height: 8px;
+background: var(--success);
+border-radius: 50%;
+}
+
+h1 {
+font-size: clamp(2.45rem, 5vw, 4.2rem);
+line-height: 1.05;
+letter-spacing: -.055em;
+margin-bottom: 22px;
+}
+
+.hero h1 span {
+color: var(--blue);
+}
+
+.lead {
+color: var(--muted);
+font-size: 1.08rem;
+max-width: 610px;
+margin-bottom: 28px;
+}
+
+.actions {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+}
+
+/* =========================
+DASHBOARD
+========================= */
+
+.dashboard {
+background: white;
+border: 1px solid var(--border);
+border-radius: 24px;
+padding: 22px;
+box-shadow: var(--shadow);
+}
+
+.dash-top {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding-bottom: 18px;
+border-bottom: 1px solid var(--border);
+margin-bottom: 18px;
+}
+
+.dash-title {
+font-weight: 800;
+}
+
+.status {
+font-size: .72rem;
+font-weight: 800;
+color: var(--success);
+background: #F0FDF4;
+padding: 5px 9px;
+border-radius: 999px;
+}
+
+.metric {
+padding: 20px;
+background: var(--light);
+border: 1px solid var(--border);
+border-radius: 15px;
+margin-bottom: 12px;
+}
+
+.metric small {
+color: var(--muted);
+}
+
+.metric strong {
+display: block;
+font-size: 1.75rem;
+margin: 4px 0;
+}
+
+.positive {
+color: var(--success);
+font-size: .8rem;
+font-weight: 700;
+}
+
+/* =========================
+SECTIONS
+========================= */
+
+section.standard {
+padding: 78px 0;
+}
+
+.section-heading {
+text-align: center;
+max-width: 680px;
+margin: 0 auto 45px;
+}
+
+.section-heading h2 {
+font-size: clamp(2rem, 4vw, 2.7rem);
+line-height: 1.1;
+letter-spacing: -.04em;
+margin-bottom: 12px;
+}
+
+.section-heading p {
+color: var(--muted);
+}
+
+.cards {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
+}
+
+.card {
+border: 1px solid var(--border);
+border-radius: var(--radius);
+padding: 28px;
+background: white;
+transition: .2s ease;
+}
+
+.card:hover {
+transform: translateY(-4px);
+box-shadow: var(--shadow);
+border-color: #BFDBFE;
+}
+
+.icon {
+width: 48px;
+height: 48px;
+border-radius: 13px;
+display: grid;
+place-items: center;
+background: var(--blue-light);
+color: var(--blue);
+font-weight: 900;
+margin-bottom: 20px;
+}
+
+.card h3 {
+margin-bottom: 8px;
+font-size: 1.18rem;
+}
+
+.card p {
+color: var(--muted);
+font-size: .94rem;
+}
+
+.soft-section {
+background: var(--light);
+}
+
+/* =========================
+TRUST
+========================= */
+
+.trust {
+border-top: 1px solid var(--border);
+border-bottom: 1px solid var(--border);
+padding: 26px 0;
+background: white;
+}
+
+.trust-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+text-align: center;
+gap: 20px;
+}
+
+.trust strong {
+display: block;
+font-size: 1.45rem;
+color: var(--blue);
+}
+
+.trust span {
+color: var(--muted);
+font-size: .8rem;
+}
+
+/* =========================
+INNER PAGE HERO
+========================= */
+
+.inner-hero {
+padding: 65px 0;
+background: var(--blue-light);
+text-align: center;
+}
+
+.inner-hero h1 {
+font-size: clamp(2.3rem, 5vw, 3.4rem);
+}
+
+.inner-hero p {
+max-width: 680px;
+margin: 0 auto;
+color: var(--muted);
+}
+
+/* =========================
+ABOUT
+========================= */
+
+.two-col {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 50px;
+align-items: center;
+}
+
+.check-list {
+list-style: none;
+margin-top: 24px;
+}
+
+.check-list li {
+display: flex;
+gap: 12px;
+margin: 15px 0;
+}
+
+.check {
+color: var(--teal);
+font-weight: 900;
+}
+
+.quote-box {
+padding: 35px;
+border-radius: 22px;
+background: linear-gradient(135deg, var(--blue), #38BDF8);
+color: white;
+box-shadow: var(--shadow);
+}
+
+/* =========================
+BOOKING
+========================= */
+
+.booking-card {
+max-width: 900px;
+margin: auto;
+border: 1px solid var(--border);
+border-radius: 24px;
+padding: 35px;
+box-shadow: var(--shadow);
+background: white;
+text-align: center;
+}
+
+.calendly-inline-widget {
+min-width: 320px;
+height: 700px;
+width: 100%;
+}
+
+/* =========================
+CONTACT
+========================= */
+
+.contact-grid {
+display: grid;
+grid-template-columns: .8fr 1.2fr;
+gap: 35px;
+}
+
+.contact-panel {
+background: var(--blue-light);
+border-radius: 22px;
+padding: 30px;
+}
+
+form {
+border: 1px solid var(--border);
+border-radius: 22px;
+padding: 30px;
+background: white;
+box-shadow: var(--shadow);
+}
+
+.field {
+margin-bottom: 16px;
+}
+
+label {
+display: block;
+font-weight: 700;
+font-size: .88rem;
+margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+width: 100%;
+border: 1px solid var(--border);
+border-radius: 10px;
+padding: 12px 13px;
+outline: none;
+background: white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+border-color: var(--blue);
+box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
+}
+
+textarea {
+resize: vertical;
+min-height: 110px;
+}
+
+.form-message {
+display: none;
+margin-top: 12px;
+padding: 12px;
+background: #F0FDF4;
+color: var(--success);
+border-radius: 10px;
+font-weight: 700;
+font-size: .9rem;
+}
+
+/* =========================
+FAQ
+========================= */
+
+.faq-wrap {
+max-width: 820px;
+margin: auto;
+}
+
+.faq-item {
+border: 1px solid var(--border);
+border-radius: 12px;
+margin-bottom: 12px;
+overflow: hidden;
+}
+
+.faq-q {
+width: 100%;
+border: 0;
+background: white;
+padding: 19px;
+text-align: left;
+font-weight: 800;
+cursor: pointer;
+display: flex;
+justify-content: space-between;
+gap: 15px;
+}
+
+.faq-a {
+display: none;
+padding: 0 19px 19px;
+color: var(--muted);
+}
+
+.faq-item.open .faq-a {
+display: block;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer {
+background: #172033;
+color: #CBD5E1;
+padding: 45px 0 25px;
+}
+
+.footer-grid {
+display: grid;
+grid-template-columns: 2fr 1fr 1fr 1fr;
+gap: 35px;
+margin-bottom: 35px;
+}
+
+footer h3,
+footer h4 {
+color: white;
+margin-bottom: 12px;
+}
+
+footer a {
+color: #CBD5E1;
+display: block;
+margin: 7px 0;
+font-size: .9rem;
+}
+
+footer a:hover {
+color: white;
+}
+
+.footer-bottom {
+border-top: 1px solid #334155;
+padding-top: 20px;
+font-size: .8rem;
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+.menu-btn {
+display: block;
+}
+
+.nav-links {
+position: absolute;
+left: 0;
+right: 0;
+top: 72px;
+display: none;
+flex-direction: column;
+align-items: stretch;
+padding: 18px 20px 22px;
+background: white;
+border-bottom: 1px solid var(--border);
+box-shadow: 0 15px 25px rgba(0, 0, 0, .07);
+}
+
+.nav-links.open {
+display: flex;
+}
+
+.nav-links li a {
+display: block;
+padding: 9px 0;
+}
+
+.nav-links .btn {
+text-align: center;
+margin-top: 4px;
+}
+
+.hero-grid,
+.two-col,
+.contact-grid {
+grid-template-columns: 1fr;
+}
+
+.hero {
+padding: 55px 0;
+}
+
+.cards {
+grid-template-columns: 1fr;
+}
+
+.trust-grid {
+grid-template-columns: 1fr 1fr;
+}
+
+.footer-grid {
+grid-template-columns: 1fr 1fr;
+}
+
+section.standard {
+padding: 60px 0;
+}
+}
+
+@media (max-width: 520px) {
+
+.container {
+width: min(var(--max), calc(100% - 28px));
+}
+
+.actions .btn {
+width: 100%;
+}
+
+.trust-grid {
+grid-template-columns: 1fr 1fr;
+gap: 15px;
+}
+
+.footer-grid {
+grid-template-columns: 1fr;
+}
+
+.dashboard {
+padding: 16px;
+}
+
+form,
+.booking-card {
+padding: 22px;
+}
+
+.inner-hero {
+padding: 50px 0;
+}
+
+.logo-mark {
+width: 38px;
+height: 38px;
+}
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">
+<div class="container nav">
+
+<!-- LOGO -->
+<a href="#home" data-page="home" class="logo" aria-label="OrionCore Home">
 <img src="favicon.PNG" alt="OrionCore" class="logo-mark">
+</a>
+
+<!-- MOBILE MENU -->
+<button
+class="menu-btn"
+id="menuBtn"
+aria-label="Open menu"
+aria-expanded="false">
+☰
+</button>
+
+<!-- NAVIGATION -->
+<ul class="nav-links" id="navLinks">
+<li>
+<a href="#home" data-page="home">Home</a>
+</li>
+
+<li>
+<a href="#services" data-page="services">Services</a>
+</li>
+
+<li>
+<a href="#about" data-page="about">About</a>
+</li>
+
+<li>
+<a href="#faq" data-page="faq">FAQ</a>
+</li>
+</ul>
+
 </div>
-    </a>
-
-    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
-
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home" data-page="home">Home</a></li>
-      <li><a href="#services" data-page="services">Services</a></li>
-      <li><a href="#about" data-page="about">About</a></li>
-      <li><a href="#faq" data-page="faq">FAQ</a></li>
-    </ul>
-  </div>
 </header>
 
 <main>
 
-  <!-- HOME PAGE -->
-  <div class="page active" id="home">
+<!-- =========================
+HOME PAGE
+========================= -->
 
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow"><span class="dot"></span> Modern bookkeeping for growing businesses</div>
-          <h1>Know your numbers. <span>Grow with confidence.</span></h1>
-          <p class="lead">
-            OrionCore helps small businesses keep their books organized, understand their finances,
-            and build better systems without the confusion.
-          </p>
-          <div class="actions">
-            <a href="#book" data-page="book" class="btn btn-primary">Book a Consultation</a>
-            <a href="#services" data-page="services" class="btn btn-secondary">Explore Services</a>
-          </div>
-        </div>
+<div class="page active" id="home">
 
-        <div class="dashboard">
-          <div class="dash-top">
-            <span class="dash-title">Business Financial Snapshot</span>
-            <span class="status">● Organized</span>
-          </div>
-          <div class="metric">
-            <small>Monthly Revenue</small>
-            <strong>$48,250</strong>
-            <span class="positive">↑ Track your growth</span>
-          </div>
-          <div class="metric">
-            <small>Books Status</small>
-            <strong>Up to date</strong>
-            <span class="positive">✓ Reconciliations reviewed</span>
-          </div>
-          <div class="metric" style="margin-bottom:0;">
-            <small>Owner Focus</small>
-            <strong>More clarity</strong>
-            <span class="positive">✓ Less administrative stress</span>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="hero">
+<div class="container hero-grid">
 
-    <section class="trust">
-      <div class="container trust-grid">
-        <div><strong>Clean</strong><span>Organized books</span></div>
-        <div><strong>Clear</strong><span>Easy-to-read reports</span></div>
-        <div><strong>Cloud</strong><span>Modern workflows</span></div>
-        <div><strong>Human</strong><span>Personal support</span></div>
-      </div>
-    </section>
+<div>
+<div class="eyebrow">
+<span class="dot"></span>
+Modern bookkeeping for growing businesses
+</div>
 
-    <section class="standard">
-      <div class="container">
-        <div class="section-heading">
-          <h2>Financial support without the overwhelm.</h2>
-          <p>Simple services designed around what a growing business actually needs.</p>
-        </div>
+<h1>
+Know your numbers.
+<span>Grow with confidence.</span>
+</h1>
 
-        <div class="cards">
-          <article class="card">
-            <div class="icon">01</div>
-            <h3>Bookkeeping</h3>
-            <p>Transaction categorization, bank reconciliation, account organization and ongoing bookkeeping support.</p>
-          </article>
+<p class="lead">
+OrionCore helps small businesses keep their books organized,
+understand their finances, and build better systems without the confusion.
+</p>
 
-          <article class="card">
-            <div class="icon">02</div>
-            <h3>Financial Reporting</h3>
-            <p>Clear financial statements and summaries that help you understand what is happening in your business.</p>
-          </article>
+<div class="actions">
+<a href="#book" data-page="book" class="btn btn-primary">
+Book a Consultation
+</a>
 
-          <article class="card">
-            <div class="icon">03</div>
-            <h3>Catch-Up & Cleanup</h3>
-            <p>Behind on your books? Get your records organized and brought up to date before moving forward.</p>
-          </article>
-        </div>
-      </div>
-    </section>
+<a href="#services" data-page="services" class="btn btn-secondary">
+Explore Services
+</a>
+</div>
+</div>
 
-    <section class="standard soft-section">
-      <div class="container two-col">
-        <div>
-          <div class="eyebrow">Why OrionCore?</div>
-          <h2 style="font-size:2.4rem;line-height:1.1;margin-bottom:15px;">Your books should help you run the business.</h2>
-          <p style="color:var(--muted);">
-            OrionCore combines bookkeeping, practical reporting and modern cloud tools
-            to make your financial information easier to manage.
-          </p>
-          <ul class="check-list">
-            <li><span class="check">✓</span> Straightforward communication</li>
-            <li><span class="check">✓</span> Organized digital records</li>
-            <li><span class="check">✓</span> Reports you can actually understand</li>
-            <li><span class="check">✓</span> Flexible support as your business grows</li>
-          </ul>
-        </div>
+<div class="dashboard">
 
-        <div class="quote-box">
-          <h2 style="margin-bottom:15px;">Built for the next stage.</h2>
-          <p>
-            Whether you're launching, growing or cleaning up your financial systems,
-            OrionCore gives you a clearer financial foundation.
-          </p>
-          <br>
-          <a href="#book" data-page="book" class="btn" style="background:white;color:var(--blue);">Let's Talk →</a>
-        </div>
-      </div>
-    </section>
-  </div>
+<div class="dash-top">
+<span class="dash-title">Business Financial Snapshot</span>
+<span class="status">● Organized</span>
+</div>
 
-  <!-- SERVICES PAGE -->
-  <div class="page" id="services">
-    <section class="inner-hero">
-      <div class="container">
-        <div class="eyebrow">OrionCore Services</div>
-        <h1>Solutions that keep your business organized.</h1>
-        <p>Choose the support you need today and scale your services as your business grows.</p>
-      </div>
-    </section>
+<div class="metric">
+<small>Monthly Revenue</small>
+<strong>$48,250</strong>
+<span class="positive">↑ Track your growth</span>
+</div>
 
-    <section class="standard">
-      <div class="container">
-        <div class="cards">
-          <article class="card">
-            <div class="icon">01</div>
-            <h3>Monthly Bookkeeping</h3>
-            <p>Ongoing bookkeeping support, transaction categorization, reconciliations and organized records.</p>
-          </article>
-          <article class="card">
-            <div class="icon">02</div>
-            <h3>Bookkeeping Cleanup</h3>
-            <p>Catch-up and cleanup projects for businesses with overdue, inconsistent or disorganized records.</p>
-          </article>
-          <article class="card">
-            <div class="icon">03</div>
-            <h3>Financial Reports</h3>
-            <p>Profit & loss, balance sheet and other useful financial reporting for business owners.</p>
-          </article>
-          <article class="card">
-            <div class="icon">04</div>
-            <h3>Cloud Accounting Setup</h3>
-            <p>Help organizing your accounting workflow and connecting the tools you use to manage your business.</p>
-          </article>
-          <article class="card">
-            <div class="icon">05</div>
-            <h3>Document Organization</h3>
-            <p>Structured digital records and receipt workflows to make your financial administration easier.</p>
-          </article>
-          <article class="card">
-            <div class="icon">06</div>
-            <h3>Business Support</h3>
-            <p>Practical financial administration support for entrepreneurs who want more time to focus on growth.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-  </div>
+<div class="metric">
+<small>Books Status</small>
+<strong>Up to date</strong>
+<span class="positive">✓ Reconciliations reviewed</span>
+</div>
 
-  <!-- ABOUT PAGE -->
-  <div class="page" id="about">
-    <section class="inner-hero">
-      <div class="container">
-        <div class="eyebrow">About OrionCore</div>
-        <h1>Modern. Practical. Business-focused.</h1>
-        <p>We believe financial information should be organized, understandable and useful.</p>
-      </div>
-    </section>
+<div class="metric" style="margin-bottom:0;">
+<small>Owner Focus</small>
+<strong>More clarity</strong>
+<span class="positive">✓ Less administrative stress</span>
+</div>
 
-    <section class="standard">
-      <div class="container two-col">
-        <div>
-          <h2 style="font-size:2.5rem;line-height:1.1;margin-bottom:18px;">More than data entry.</h2>
-          <p style="color:var(--muted);">
-            OrionCore is designed around a simple idea: business owners deserve financial
-            information they can understand and use.
-          </p>
-          <ul class="check-list">
-            <li><span class="check">✓</span> Modern cloud-based workflows</li>
-            <li><span class="check">✓</span> Clear communication</li>
-            <li><span class="check">✓</span> Organized financial records</li>
-            <li><span class="check">✓</span> A growth-oriented approach</li>
-          </ul>
-        </div>
+</div>
 
-        <div class="card">
-          <div class="icon">OC</div>
-          <h3>Our approach</h3>
-          <p>
-            Start with clean records. Build reliable processes. Turn financial information
-            into something useful for everyday business decisions.
-          </p>
-        </div>
-      </div>
-    </section>
-  </div>
+</div>
+</section>
 
-  <!-- FAQ PAGE -->
-  <div class="page" id="faq">
-    <section class="inner-hero">
-      <div class="container">
-        <div class="eyebrow">Questions</div>
-        <h1>Frequently Asked Questions</h1>
-        <p>Quick answers about working with OrionCore.</p>
-      </div>
-    </section>
+<section class="trust">
+<div class="container trust-grid">
+<div>
+<strong>Clean</strong>
+<span>Organized books</span>
+</div>
 
-    <section class="standard">
-      <div class="container faq-wrap">
+<div>
+<strong>Clear</strong>
+<span>Easy-to-read reports</span>
+</div>
 
-        <div class="faq-item">
-          <button class="faq-q">What businesses do you work with? <span>+</span></button>
-          <div class="faq-a">OrionCore is designed primarily for small businesses, entrepreneurs and growing service-based businesses. Your consultation can help determine whether the service is a good fit.</div>
-        </div>
+<div>
+<strong>Cloud</strong>
+<span>Modern workflows</span>
+</div>
 
-        <div class="faq-item">
-          <button class="faq-q">What accounting software can you work with? <span>+</span></button>
-          <div class="faq-a">Services can be built around common cloud accounting platforms such as QuickBooks Online and Xero, depending on the engagement.</div>
-        </div>
+<div>
+<strong>Human</strong>
+<span>Personal support</span>
+</div>
+</div>
+</section>
 
-        <div class="faq-item">
-          <button class="faq-q">Can you clean up old bookkeeping? <span>+</span></button>
-          <div class="faq-a">Yes. Cleanup and catch-up bookkeeping can be offered as a separate project before ongoing monthly support begins.</div>
-        </div>
+<section class="standard">
+<div class="container">
 
-        <div class="faq-item">
-          <button class="faq-q">Do you prepare tax returns? <span>+</span></button>
-          <div class="faq-a">Bookkeeping and financial record preparation are different from tax-return preparation. OrionCore can organize records for your tax professional, while tax services should only be offered within the appropriate professional scope.</div>
-        </div>
+<div class="section-heading">
+<h2>Financial support without the overwhelm.</h2>
+<p>
+Simple services designed around what a growing business actually needs.
+</p>
+</div>
 
-        <div class="faq-item">
-          <button class="faq-q">How do I get started? <span>+</span></button>
-          <div class="faq-a">Book a consultation, tell us about your business and current bookkeeping situation, and we'll discuss the best next step.</div>
-        </div>
+<div class="cards">
 
-      </div>
-    </section>
-  </div>
+<article class="card">
+<div class="icon">01</div>
+<h3>Bookkeeping</h3>
+<p>
+Transaction categorization, bank reconciliation, account organization
+and ongoing bookkeeping support.
+</p>
+</article>
 
-  <!-- BOOKING PAGE -->
-  <div class="page" id="book">
-    <section class="standard">
-      <div class="container">
-        <div class="booking-card">
-          <div class="calendly-inline-widget"
-               data-url="https://calendly.com/orioncore/book-a-consultation"
-               style="min-width:320px;height:700px;margin-top:25px;"></div>
-        </div>
-      </div>
-    </section>
-  </div>
+<article class="card">
+<div class="icon">02</div>
+<h3>Financial Reporting</h3>
+<p>
+Clear financial statements and summaries that help you understand
+what is happening in your business.
+</p>
+</article>
 
-  <!-- CONTACT PAGE -->
-  <div class="page" id="contact">
-    <section class="inner-hero">
-      <div class="container">
-        <div class="eyebrow">Contact OrionCore</div>
-        <h1>Tell us what you need.</h1>
-        <p>Send an inquiry and we'll use the information to understand how we can help.</p>
-      </div>
-    </section>
+<article class="card">
+<div class="icon">03</div>
+<h3>Catch-Up & Cleanup</h3>
+<p>
+Behind on your books? Get your records organized and brought up to date
+before moving forward.
+</p>
+</article>
 
-    <section class="standard">
-      <div class="container contact-grid">
-        <div class="contact-panel">
-          <h2>Let's make your financial admin easier.</h2>
-          <p style="color:var(--muted);margin-top:12px;">
-            Use the form to tell us about your business and the bookkeeping support you're looking for.
-          </p>
-          <br>
-          <strong>Email</strong>
-          <p style="color:var(--muted);"> info@orioncore.ca</p>
-        </div>
+</div>
+</div>
+</section>
 
-        <form id="contactForm">
-          <div class="field">
-            <label for="name">Name</label>
-            <input id="name" required placeholder="Your name">
-          </div>
+<section class="standard soft-section">
+<div class="container two-col">
 
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" type="email" required placeholder="you@business.com">
-          </div>
+<div>
 
-          <div class="field">
-            <label for="service">What do you need?</label>
-            <select id="service">
-              <option>Monthly Bookkeeping</option>
-              <option>Bookkeeping Cleanup</option>
-              <option>Financial Reporting</option>
-              <option>Cloud Accounting Setup</option>
-              <option>General Inquiry</option>
-            </select>
-          </div>
+<div class="eyebrow">
+Why OrionCore?
+</div>
 
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" placeholder="Tell us a little about your business..."></textarea>
-          </div>
+<h2 style="font-size:2.4rem;line-height:1.1;margin-bottom:15px;">
+Your books should help you run the business.
+</h2>
 
-          <button class="btn btn-primary" style="width:100%;" type="submit">Send Inquiry</button>
-          <div class="form-message" id="formMessage">
-            Your inquiry is ready. Connect this form to your email/form service before launching so submissions are delivered.
-          </div>
-        </form>
-      </div>
-    </section>
-  </div>
+<p style="color:var(--muted);">
+OrionCore combines bookkeeping, practical reporting and modern cloud tools
+to make your financial information easier to manage.
+</p>
+
+<ul class="check-list">
+<li>
+<span class="check">✓</span>
+Straightforward communication
+</li>
+
+<li>
+<span class="check">✓</span>
+Organized digital records
+</li>
+
+<li>
+<span class="check">✓</span>
+Reports you can actually understand
+</li>
+
+<li>
+<span class="check">✓</span>
+Flexible support as your business grows
+</li>
+</ul>
+
+</div>
+
+<div class="quote-box">
+
+<h2 style="margin-bottom:15px;">
+Built for the next stage.
+</h2>
+
+<p>
+Whether you're launching, growing or cleaning up your financial systems,
+OrionCore gives you a clearer financial foundation.
+</p>
+
+<br>
+
+<a
+href="#book"
+data-page="book"
+class="btn"
+style="background:white;color:var(--blue);">
+Let's Talk →
+</a>
+
+</div>
+
+</div>
+</section>
+
+</div>
+
+
+<!-- =========================
+SERVICES PAGE
+========================= -->
+
+<div class="page" id="services">
+
+<section class="inner-hero">
+<div class="container">
+
+<div class="eyebrow">
+OrionCore Services
+</div>
+
+<h1>
+Solutions that keep your business organized.
+</h1>
+
+<p>
+Choose the support you need today and scale your services as your business grows.
+</p>
+
+</div>
+</section>
+
+<section class="standard">
+<div class="container">
+
+<div class="cards">
+
+<article class="card">
+<div class="icon">01</div>
+<h3>Monthly Bookkeeping</h3>
+<p>
+Ongoing bookkeeping support, transaction categorization,
+reconciliations and organized records.
+</p>
+</article>
+
+<article class="card">
+<div class="icon">02</div>
+<h3>Bookkeeping Cleanup</h3>
+<p>
+Catch-up and cleanup projects for businesses with overdue,
+inconsistent or disorganized records.
+</p>
+</article>
+
+<article class="card">
+<div class="icon">03</div>
+<h3>Financial Reports</h3>
+<p>
+Profit & loss, balance sheet and other useful financial reporting
+for business owners.
+</p>
+</article>
+
+<article class="card">
+<div class="icon">04</div>
+<h3>Cloud Accounting Setup</h3>
+<p>
+Help organizing your accounting workflow and connecting the tools
+you use to manage your business.
+</p>
+</article>
+
+<article class="card">
+<div class="icon">05</div>
+<h3>Document Organization</h3>
+<p>
+Structured digital records and receipt workflows to make your
+financial administration easier.
+</p>
+</article>
+
+<article class="card">
+<div class="icon">06</div>
+<h3>Business Support</h3>
+<p>
+Practical financial administration support for entrepreneurs who
+want more time to focus on growth.
+</p>
+</article>
+
+</div>
+</div>
+</section>
+
+</div>
+
+
+<!-- =========================
+ABOUT PAGE
+========================= -->
+
+<div class="page" id="about">
+
+<section class="inner-hero">
+<div class="container">
+
+<div class="eyebrow">
+About OrionCore
+</div>
+
+<h1>
+Modern. Practical. Business-focused.
+</h1>
+
+<p>
+We believe financial information should be organized,
+understandable and useful.
+</p>
+
+</div>
+</section>
+
+<section class="standard">
+<div class="container two-col">
+
+<div>
+
+<h2 style="font-size:2.5rem;line-height:1.1;margin-bottom:18px;">
+More than data entry.
+</h2>
+
+<p style="color:var(--muted);">
+OrionCore is designed around a simple idea: business owners deserve
+financial information they can understand and use.
+</p>
+
+<ul class="check-list">
+
+<li>
+<span class="check">✓</span>
+Modern cloud-based workflows
+</li>
+
+<li>
+<span class="check">✓</span>
+Clear communication
+</li>
+
+<li>
+<span class="check">✓</span>
+Organized financial records
+</li>
+
+<li>
+<span class="check">✓</span>
+A growth-oriented approach
+</li>
+
+</ul>
+
+</div>
+
+<div class="card">
+
+<div class="icon">OC</div>
+
+<h3>
+Our approach
+</h3>
+
+<p>
+Start with clean records. Build reliable processes. Turn financial
+information into something useful for everyday business decisions.
+</p>
+
+</div>
+
+</div>
+</section>
+
+</div>
+
+
+<!-- =========================
+FAQ PAGE
+========================= -->
+
+<div class="page" id="faq">
+
+<section class="inner-hero">
+<div class="container">
+
+<div class="eyebrow">
+Questions
+</div>
+
+<h1>
+Frequently Asked Questions
+</h1>
+
+<p>
+Quick answers about working with OrionCore.
+</p>
+
+</div>
+</section>
+
+<section class="standard">
+<div class="container faq-wrap">
+
+<div class="faq-item">
+<button class="faq-q">
+What businesses do you work with?
+<span>+</span>
+</button>
+
+<div class="faq-a">
+OrionCore is designed primarily for small businesses,
+entrepreneurs and growing service-based businesses.
+Your consultation can help determine whether the service is a good fit.
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-q">
+What accounting software can you work with?
+<span>+</span>
+</button>
+
+<div class="faq-a">
+Services can be built around common cloud accounting platforms
+such as QuickBooks Online and Xero, depending on the engagement.
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-q">
+Can you clean up old bookkeeping?
+<span>+</span>
+</button>
+
+<div class="faq-a">
+Yes. Cleanup and catch-up bookkeeping can be offered as a separate
+project before ongoing monthly support begins.
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-q">
+Do you prepare tax returns?
+<span>+</span>
+</button>
+
+<div class="faq-a">
+Bookkeeping and financial record preparation are different from
+tax-return preparation. OrionCore can organize records for your
+tax professional, while tax services should only be offered within
+the appropriate professional scope.
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-q">
+How do I get started?
+<span>+</span>
+</button>
+
+<div class="faq-a">
+Book a consultation, tell us about your business and current
+bookkeeping situation, and we'll discuss the best next step.
+</div>
+</div>
+
+</div>
+</section>
+
+</div>
+
+
+<!-- =========================
+BOOKING PAGE
+========================= -->
+
+<div class="page" id="book">
+
+<section class="standard">
+
+<div class="container">
+
+<div class="booking-card">
+
+<div
+class="calendly-inline-widget"
+data-url="https://calendly.com/orioncore/book-a-consultation"
+style="min-width:320px;height:700px;">
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =========================
+CONTACT PAGE
+========================= -->
+
+<div class="page" id="contact">
+
+<section class="inner-hero">
+
+<div class="container">
+
+<div class="eyebrow">
+Contact OrionCore
+</div>
+
+<h1>
+Tell us what you need.
+</h1>
+
+<p>
+Send an inquiry and we'll use the information to understand
+how we can help.
+</p>
+
+</div>
+
+</section>
+
+<section class="standard">
+
+<div class="container contact-grid">
+
+<div class="contact-panel">
+
+<h2>
+Let's make your financial admin easier.
+</h2>
+
+<p style="color:var(--muted);margin-top:12px;">
+Use the form to tell us about your business and the bookkeeping
+support you're looking for.
+</p>
+
+<br>
+
+<strong>Email</strong>
+
+<p style="color:var(--muted);">
+info@orioncore.ca
+</p>
+
+</div>
+
+
+<form id="contactForm">
+
+<div class="field">
+
+<label for="name">
+Name
+</label>
+
+<input
+id="name"
+required
+placeholder="Your name">
+
+</div>
+
+
+<div class="field">
+
+<label for="email">
+Email
+</label>
+
+<input
+id="email"
+type="email"
+required
+placeholder="you@business.com">
+
+</div>
+
+
+<div class="field">
+
+<label for="service">
+What do you need?
+</label>
+
+<select id="service">
+
+<option>
+Monthly Bookkeeping
+</option>
+
+<option>
+Bookkeeping Cleanup
+</option>
+
+<option>
+Financial Reporting
+</option>
+
+<option>
+Cloud Accounting Setup
+</option>
+
+<option>
+General Inquiry
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label for="message">
+Message
+</label>
+
+<textarea
+id="message"
+placeholder="Tell us a little about your business...">
+</textarea>
+
+</div>
+
+
+<button
+class="btn btn-primary"
+style="width:100%;"
+type="submit">
+Send Inquiry
+</button>
+
+
+<div
+class="form-message"
+id="formMessage">
+Your inquiry is ready. Connect this form to your email/form service
+before launching so submissions are delivered.
+</div>
+
+</form>
+
+</div>
+
+</section>
+
+</div>
 
 </main>
 
+
+<!-- =========================
+FOOTER
+========================= -->
+
 <footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <h3>OrionCore</h3>
-        <p style="max-width:320px;">Modern bookkeeping and business support for growing businesses.</p>
-      </div>
 
-      <div>
-        <h4>Pages</h4>
-        <a href="#home" data-page="home">Home</a>
-        <a href="#services" data-page="services">Services</a>
-        <a href="#about" data-page="about">About</a>
-      </div>
+<div class="container">
 
-      <div>
-        <h4>Help</h4>
-        <a href="#faq" data-page="faq">FAQ</a>
-        <a href="#contact" data-page="contact">Contact</a>
-        <a href="#book" data-page="book">Book Consultation</a>
-      </div>
+<div class="footer-grid">
 
-      <div>
-        <h4>OrionCore</h4>
-        <a href="#contact" data-page="contact">Get Started</a>
-        <a href="#book" data-page="book">Schedule</a>
-      </div>
-    </div>
+<div>
 
-    <div class="footer-bottom">
-      © 2026 OrionCore. All rights reserved.
-    </div>
-  </div>
+<h3>
+OrionCore
+</h3>
+
+<p style="max-width:320px;">
+Modern bookkeeping and business support for growing businesses.
+</p>
+
+</div>
+
+
+<div>
+
+<h4>
+Pages
+</h4>
+
+<a href="#home" data-page="home">
+Home
+</a>
+
+<a href="#services" data-page="services">
+Services
+</a>
+
+<a href="#about" data-page="about">
+About
+</a>
+
+</div>
+
+
+<div>
+
+<h4>
+Help
+</h4>
+
+<a href="#faq" data-page="faq">
+FAQ
+</a>
+
+<a href="#contact" data-page="contact">
+Contact
+</a>
+
+<a href="#book" data-page="book">
+Book Consultation
+</a>
+
+</div>
+
+
+<div>
+
+<h4>
+OrionCore
+</h4>
+
+<a href="#contact" data-page="contact">
+Get Started
+</a>
+
+<a href="#book" data-page="book">
+Schedule
+</a>
+
+</div>
+
+</div>
+
+
+<div class="footer-bottom">
+© 2026 OrionCore. All rights reserved.
+</div>
+
+</div>
+
 </footer>
 
-<script>
-  // PAGE NAVIGATION
-  const pages = document.querySelectorAll('.page');
-  const pageLinks = document.querySelectorAll('[data-page]');
-  const navLinks = document.getElementById('navLinks');
-  const menuBtn = document.getElementById('menuBtn');
 
-  function showPage(pageName) {
-    const target = document.getElementById(pageName) || document.getElementById('home');
+<!-- =========================
+CALENDLY
+========================= -->
 
-    pages.forEach(page => page.classList.remove('active'));
-    target.classList.add('active');
-
-    document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
-      link.classList.toggle('active', link.dataset.page === pageName);
-    });
-
-    navLinks.classList.remove('open');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  pageLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const page = this.dataset.page;
-      history.pushState({ page }, '', '#' + page);
-      showPage(page);
-    });
-  });
-
-  window.addEventListener('popstate', () => {
-    showPage(location.hash.replace('#', '') || 'home');
-  });
-
-  // MOBILE MENU
-  menuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-
-  // FAQ
-  document.querySelectorAll('.faq-q').forEach(button => {
-    button.addEventListener('click', () => {
-      const item = button.parentElement;
-      const open = item.classList.toggle('open');
-      button.querySelector('span').textContent = open ? '−' : '+';
-    });
-  });
-
-  // CONTACT FORM DEMO
-  document.getElementById('contactForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    document.getElementById('formMessage').style.display = 'block';
-  });
-
-  // Initial page
-  showPage(location.hash.replace('#', '') || 'home');
+<script
+type="text/javascript"
+src="https://assets.calendly.com/assets/external/widget.js"
+async>
 </script>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+
+<script>
+
+/* =========================
+PAGE NAVIGATION
+========================= */
+
+const pages = document.querySelectorAll('.page');
+const pageLinks = document.querySelectorAll('[data-page]');
+const navLinks = document.getElementById('navLinks');
+const menuBtn = document.getElementById('menuBtn');
+
+
+function showPage(pageName) {
+
+const target =
+document.getElementById(pageName) ||
+document.getElementById('home');
+
+pages.forEach(page => {
+page.classList.remove('active');
+});
+
+target.classList.add('active');
+
+
+document
+.querySelectorAll('.nav-links a[data-page]')
+.forEach(link => {
+
+link.classList.toggle(
+'active',
+link.dataset.page === pageName
+);
+
+});
+
+
+navLinks.classList.remove('open');
+
+menuBtn.setAttribute('aria-expanded', 'false');
+
+
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+
+
+/*
+Calendly is inside a hidden SPA page.
+Re-initialize it when the booking page becomes visible.
+*/
+
+if (
+pageName === 'book' &&
+typeof Calendly !== 'undefined'
+) {
+
+const calendlyContainer =
+document.querySelector('.calendly-inline-widget');
+
+if (calendlyContainer && !calendlyContainer.dataset.initialized) {
+
+Calendly.initInlineWidget({
+url: 'https://calendly.com/orioncore/book-a-consultation',
+parentElement: calendlyContainer
+});
+
+calendlyContainer.dataset.initialized = 'true';
+}
+}
+}
+
+
+/* NAVIGATION LINKS */
+
+pageLinks.forEach(link => {
+
+link.addEventListener('click', function(e) {
+
+e.preventDefault();
+
+const page = this.dataset.page;
+
+history.pushState(
+{ page },
+'',
+'#' + page
+);
+
+showPage(page);
+
+});
+
+});
+
+
+/* BACK / FORWARD BUTTON */
+
+window.addEventListener('popstate', () => {
+
+showPage(
+location.hash.replace('#', '') || 'home'
+);
+
+});
+
+
+/* MOBILE MENU */
+
+menuBtn.addEventListener('click', () => {
+
+const isOpen =
+navLinks.classList.toggle('open');
+
+menuBtn.setAttribute(
+'aria-expanded',
+isOpen ? 'true' : 'false'
+);
+
+});
+
+
+/* FAQ */
+
+document
+.querySelectorAll('.faq-q')
+.forEach(button => {
+
+button.addEventListener('click', () => {
+
+const item = button.parentElement;
+
+const open =
+item.classList.toggle('open');
+
+button.querySelector('span').textContent =
+open ? '−' : '+';
+
+});
+
+});
+
+
+/* CONTACT FORM DEMO */
+
+document
+.getElementById('contactForm')
+?.addEventListener('submit', function(e) {
+
+e.preventDefault();
+
+document
+.getElementById('formMessage')
+.style.display = 'block';
+
+});
+
+
+/* INITIAL PAGE */
+
+showPage(
+location.hash.replace('#', '') || 'home'
+);
+
+</script>
 
 </body>
 </html>
