@@ -611,6 +611,15 @@ height: 700px;
 width: 100%;
 }
 
+.calendly-loading {
+display: flex;
+align-items: center;
+justify-content: center;
+height: 100%;
+color: var(--muted);
+font-size: .95rem;
+}
+
 /* =========================
 CONTACT
 ========================= */
@@ -1529,6 +1538,7 @@ Meet your bookkeeper
 class="calendly-inline-widget"
 data-url="https://calendly.com/orioncore/book-a-consultation"
 style="min-width:320px;height:820px;">
+<div class="calendly-loading">Loading booking calendar&hellip;</div>
 </div>
 
 </div>
@@ -2250,10 +2260,30 @@ Calendly iframe/assets don't slow down the whole site.
 
 let calendlyRequested = false;
 
+function watchForCalendlyReady() {
+
+const container = document.querySelector('.calendly-inline-widget');
+const loadingEl = document.querySelector('.calendly-loading');
+
+if (!container || !loadingEl) return;
+
+const observer = new MutationObserver(function () {
+
+if (container.querySelector('iframe')) {
+loadingEl.style.display = 'none';
+observer.disconnect();
+}
+});
+
+observer.observe(container, { childList: true, subtree: true });
+}
+
 function loadCalendly() {
 
 if (calendlyRequested) return;
 calendlyRequested = true;
+
+watchForCalendlyReady();
 
 const link = document.createElement('link');
 link.rel = 'stylesheet';
