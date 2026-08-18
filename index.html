@@ -20,24 +20,212 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "AccountingService",
-  "name": "OrionCore",
-  "description": "OrionCore provides modern bookkeeping and financial support for growing Canadian businesses.",
-  "url": "https://orioncore.ca",
-  "telephone": "+16478571499",
-  "email": "info@orioncore.ca",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Toronto",
-    "addressRegion": "ON",
-    "addressCountry": "CA"
-  },
-  "areaServed": "Toronto, ON",
-  "sameAs": [
-    "https://www.facebook.com/orioncore1",
-    "https://www.instagram.com/_orioncore/",
-    "https://www.linkedin.com/company/_orioncore/",
-    "https://share.google/J3PH4UwP2kcRAV4H3"
+  "@graph": [
+    {
+      "@type": ["AccountingService", "LocalBusiness"],
+      "@id": "https://orioncore.ca/#business",
+      "name": "OrionCore",
+      "alternateName": "OrionCore Business Solutions",
+      "description": "OrionCore provides modern bookkeeping and financial support for growing Canadian businesses, including monthly bookkeeping, financial reporting, catch-up and cleanup projects, and business registration support.",
+      "url": "https://orioncore.ca",
+      "image": "https://orioncore.ca/apple-touch-icon.png",
+      "logo": "https://orioncore.ca/apple-touch-icon.png",
+      "telephone": "+16478571499",
+      "email": "info@orioncore.ca",
+      "priceRange": "$160-$650",
+      "currenciesAccepted": "CAD",
+      "paymentAccepted": "Invoice, Credit Card",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Toronto",
+        "addressRegion": "ON",
+        "addressCountry": "CA"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Toronto" },
+        { "@type": "AdministrativeArea", "name": "Greater Toronto Area" },
+        { "@type": "AdministrativeArea", "name": "Ontario" }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/orioncore1",
+        "https://www.instagram.com/_orioncore/",
+        "https://www.linkedin.com/company/_orioncore/",
+        "https://share.google/J3PH4UwP2kcRAV4H3"
+      ],
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "17:00"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "OrionCore Bookkeeping & Financial Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "url": "https://orioncore.ca/#services",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Basic Bookkeeping",
+              "description": "Essential monthly bookkeeping to keep transactions categorized and records organized.",
+              "provider": { "@id": "https://orioncore.ca/#business" },
+              "areaServed": "Toronto, ON",
+              "category": "Bookkeeping"
+            },
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "300",
+              "priceCurrency": "CAD",
+              "unitText": "MONTH",
+              "minPrice": "300"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://orioncore.ca/#services",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Standard Bookkeeping",
+              "description": "Ongoing bookkeeping support, transaction categorization, reconciliations and organized records.",
+              "provider": { "@id": "https://orioncore.ca/#business" },
+              "areaServed": "Toronto, ON",
+              "category": "Bookkeeping"
+            },
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "450",
+              "priceCurrency": "CAD",
+              "unitText": "MONTH",
+              "minPrice": "450"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://orioncore.ca/#services",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Premium Bookkeeping",
+              "description": "Full-service monthly bookkeeping with deeper reporting and priority support for growing businesses.",
+              "provider": { "@id": "https://orioncore.ca/#business" },
+              "areaServed": "Toronto, ON",
+              "category": "Bookkeeping"
+            },
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "650",
+              "priceCurrency": "CAD",
+              "unitText": "MONTH",
+              "minPrice": "650"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://orioncore.ca/#services",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Bookkeeping Cleanup & Catch-Up",
+              "description": "Catch-up and cleanup projects for businesses with overdue, inconsistent or disorganized records.",
+              "provider": { "@id": "https://orioncore.ca/#business" },
+              "areaServed": "Toronto, ON",
+              "category": "Bookkeeping"
+            },
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "300",
+              "priceCurrency": "CAD",
+              "minPrice": "300"
+            }
+          },
+          {
+            "@type": "Offer",
+            "url": "https://orioncore.ca/#services",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Registration Service",
+              "description": "Guided support to register a business (sole proprietorship rate shown; corporations and partnerships priced separately).",
+              "provider": { "@id": "https://orioncore.ca/#business" },
+              "areaServed": "Toronto, ON",
+              "category": "Business Registration"
+            },
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "160",
+              "priceCurrency": "CAD",
+              "minPrice": "160"
+            }
+          }
+        ]
+      },
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "name": "Book a Consultation",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://calendly.com/orioncore/book-a-consultation",
+          "actionPlatform": [
+            "https://schema.org/DesktopWebPlatform",
+            "https://schema.org/MobileWebPlatform"
+          ]
+        },
+        "result": {
+          "@type": "Reservation",
+          "name": "Free 30-Minute Consultation"
+        }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://orioncore.ca/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What businesses do you work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OrionCore is designed primarily for small businesses, entrepreneurs and growing service-based businesses. A consultation can help determine whether the service is a good fit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What accounting software can you work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Services can be built around common cloud accounting platforms such as QuickBooks Online and Xero, depending on the engagement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you clean up old bookkeeping?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Cleanup and catch-up bookkeeping can be offered as a separate project before ongoing monthly support begins."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you prepare tax returns?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bookkeeping and financial record preparation are different from tax-return preparation. OrionCore can organize records for a tax professional, while tax services are handled within the appropriate professional scope."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get started with OrionCore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Book a consultation, share information about the business and current bookkeeping situation, and OrionCore will recommend the best next step."
+          }
+        }
+      ]
+    }
   ]
 }
 </script>
