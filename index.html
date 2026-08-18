@@ -1527,6 +1527,7 @@ Meet your bookkeeper
 
 <div
 class="calendly-inline-widget"
+data-url="https://calendly.com/orioncore/book-a-consultation"
 style="min-width:320px;height:820px;">
 </div>
 
@@ -2262,22 +2263,6 @@ document.head.appendChild(link);
 const script = document.createElement('script');
 script.src = 'https://assets.calendly.com/assets/external/widget.js';
 script.async = true;
-
-script.onload = function () {
-
-const calendlyContainer =
-document.querySelector('.calendly-inline-widget');
-
-if (calendlyContainer && !calendlyContainer.dataset.initialized) {
-
-Calendly.initInlineWidget({
-url: 'https://calendly.com/orioncore/book-a-consultation',
-parentElement: calendlyContainer
-});
-
-calendlyContainer.dataset.initialized = 'true';
-}
-};
 
 document.body.appendChild(script);
 }
