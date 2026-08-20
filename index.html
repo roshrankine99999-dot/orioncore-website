@@ -576,6 +576,12 @@ grid-template-columns: repeat(3, 1fr);
 gap: 20px;
 }
 
+.cards-services {
+grid-template-columns: repeat(2, 1fr);
+max-width: 820px;
+margin-inline: auto;
+}
+
 .card {
 border: 1px solid var(--border);
 border-radius: var(--radius);
@@ -1399,70 +1405,31 @@ Choose the support you need today and scale your services as your business grows
 <section class="standard">
 <div class="container">
 
-<div class="cards">
+<div class="cards cards-services">
 
 <article class="card">
 <div class="icon">01</div>
-<h3>Basic Bookkeeping</h3>
+<h3>Bookkeeping Services</h3>
 <p>
-Essential monthly bookkeeping to keep your transactions
-categorized and your records organized.
+From essential monthly bookkeeping to full-service reporting, plus
+cleanup and catch-up for overdue records — support that scales with
+your business.
 </p>
 <div class="card-price">Starting at $300/month</div>
 <div class="card-actions">
-<a href="#quote" data-page="quote" data-service="Basic Bookkeeping" class="btn btn-secondary">Get a Quote</a>
+<a href="#quote" data-page="quote" data-service="Bookkeeping Services" class="btn btn-secondary">Get a Quote</a>
 <a href="https://buy.stripe.com/5kQaEXccug286JH0rqbQY02" class="btn btn-primary">Get Started</a>
 </div>
 </article>
 
 <article class="card">
 <div class="icon">02</div>
-<h3>Standard Bookkeeping</h3>
-<p>
-Ongoing bookkeeping support, transaction categorization,
-reconciliations and organized records.
-</p>
-<div class="card-price">Starting at $450/month</div>
-<div class="card-actions">
-<a href="#quote" data-page="quote" data-service="Standard Bookkeeping" class="btn btn-secondary">Get a Quote</a>
-<a href="https://buy.stripe.com/bJedR92BUcPWgkhgqobQY03" class="btn btn-primary">Get Started</a>
-</div>
-</article>
-
-<article class="card">
-<div class="icon">03</div>
-<h3>Premium Bookkeeping</h3>
-<p>
-Full-service monthly bookkeeping with deeper reporting and
-priority support for growing businesses.
-</p>
-<div class="card-price">Starting at $650/month</div>
-<div class="card-actions">
-<a href="#quote" data-page="quote" data-service="Premium Bookkeeping" class="btn btn-secondary">Get a Quote</a>
-<a href="https://buy.stripe.com/4gMeVd7We3fmc41gqobQY04" class="btn btn-primary">Get Started</a>
-</div>
-</article>
-
-<article class="card">
-<div class="icon">04</div>
-<h3>Bookkeeping Cleanup & Catch-Up</h3>
-<p>
-Catch-up and cleanup projects for businesses with overdue,
-inconsistent or disorganized records.
-</p>
-<div class="card-price">Starting at $300</div>
-<div class="card-actions">
-<a href="#quote" data-page="quote" data-service="Bookkeeping Cleanup &amp; Catch-Up" class="btn btn-secondary">Get a Quote</a>
-<a href="https://buy.stripe.com/9B6aEXb8qeY42treigbQY01" class="btn btn-primary">Get Started</a>
-</div>
-</article>
-
-<article class="card">
-<div class="icon">05</div>
 <h3>Business Registration Service</h3>
 <p>
 Guided support to help you register your business and get the
-paperwork sorted, so you can start off on the right foot.
+paperwork sorted, so you can start off on the right foot. OrionCore
+is a partner with the Ontario Business Registry (OBR), making the
+registration process fast and straightforward.
 </p>
 <div class="card-price">Starting at $160</div>
 <p class="card-note">
@@ -1906,6 +1873,10 @@ What do you need help with?
 
 <option value="" disabled selected>
 Select a service
+</option>
+
+<option>
+Bookkeeping Services
 </option>
 
 <option>
